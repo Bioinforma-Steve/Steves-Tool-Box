@@ -7,7 +7,7 @@ For each cluster, the table contains genomic coordinates, BGC type, cluster type
 top secondary metabolite (if applicable), the number of loci in cluster, 
 and the gene models in the cluster.
 
-Script successfully tested with versions 6 and 7. Not yet tested with antiSMASH 8.
+Script successfully tested with versions 6, 7, and 8.
 
 Usage:
 
