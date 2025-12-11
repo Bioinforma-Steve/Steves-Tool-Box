@@ -23,7 +23,7 @@ import os
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 
-#Initialize the 
+#Initialize the variables
 parser = argparse.ArgumentParser(description="A program to generate an antiSMASH cluster table in CSV format")
 parser.add_argument("--input", type=str, help="path of the folder containing antiSMASH output, omit last '/'")
 parser.add_argument("--JSON", type=str, help="JSON file output by antiSMASH")
@@ -77,6 +77,13 @@ def getBGCLoci(gbk):
             if 'locus_tag' in feature.qualifiers:
                 locus_tag = feature.qualifiers['locus_tag'][0]
                 locus_tag = [locus_tag]
+            elif 'gene' in feature.qualifiers:
+                locus_tag = feature.qualifiers['gene'][0]
+                locus_tag = [locus_tag]
+            else:
+                #if no usable identifier - skip this CDS
+                continue
+            
             #write to a new line using f-strings
             line = gbk.id,locus_tag
             CDS.append(line)
